@@ -2,20 +2,6 @@
  * @jest-environment jsdom
  */
 
-// import { screen } from "@testing-library/dom";
-// import NewBillUI from "../views/NewBillUI.js";
-// import NewBill from "../containers/NewBill.js";
-
-// describe("Given I am connected as an employee", () => {
-//   describe("When I am on NewBill Page", () => {
-//     test("Then ...", () => {
-//       const html = NewBillUI();
-//       document.body.innerHTML = html;
-//       //to-do write assertion
-//     });
-//   });
-// });
-
 import "@testing-library/jest-dom";
 import { fireEvent, screen, waitFor } from "@testing-library/dom";
 import { ROUTES_PATH } from "../constants/routes.js";
@@ -95,7 +81,7 @@ describe("Given I am connected as an employee", () => {
           await waitFor(() => process.nextTick);
 
           // Assertions
-          expect(bills.create).toBeCalled();
+          expect(bills.create).not.toBeCalled();
           expect(window.location.hash).toBe(ROUTES_PATH.NewBill);
 
           jest.restoreAllMocks();
@@ -132,7 +118,7 @@ describe("Given I am connected as an employee", () => {
             await waitFor(() => process.nextTick);
 
             // Should have called store.bills().create AND NOT being redirected to Bills page
-            expect(bills.create).toBeCalled();
+            expect(bills.create).not.toBeCalled();
 
             jest.restoreAllMocks();
           });
